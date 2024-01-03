@@ -5,7 +5,7 @@
 
 	import { onMount } from 'svelte';
 	import { config, models, settings, user, chats } from '$lib/stores';
-	import { splitStream, getGravatarURL } from '$lib/utils';
+	import { splitStream } from '$lib/utils';
 
 	import { getOllamaVersion } from '$lib/apis/ollama';
 	import { createNewChat, deleteAllChats, getAllChats, getChatList } from '$lib/apis/chats';
@@ -84,7 +84,6 @@
 	let speechAutoSend = false;
 	let responseAutoCopy = false;
 
-	let gravatarEmail = '';
 	let titleAutoGenerateModel = '';
 
 	// Chats
@@ -666,7 +665,6 @@
 		speechAutoSend = settings.speechAutoSend ?? false;
 		responseAutoCopy = settings.responseAutoCopy ?? false;
 		titleAutoGenerateModel = settings.titleAutoGenerateModel ?? '';
-		gravatarEmail = settings.gravatarEmail ?? '';
 
 		authEnabled = settings.authHeader !== undefined ? true : false;
 		if (authEnabled) {
@@ -1671,31 +1669,6 @@
 									</button>
 								</div>
 							</div>
-
-							<!-- <hr class=" dark:border-gray-700" />
-							<div>
-								<div class=" mb-2.5 text-sm font-medium">
-									Gravatar Email <span class=" text-gray-400 text-sm">(optional)</span>
-								</div>
-								<div class="flex w-full">
-									<div class="flex-1">
-										<input
-											class="w-full rounded py-2 px-4 text-sm dark:text-gray-300 dark:bg-gray-800 outline-none"
-											placeholder="Enter Your Email"
-											bind:value={gravatarEmail}
-											autocomplete="off"
-											type="email"
-										/>
-									</div>
-								</div>
-								<div class="mt-2 text-xs text-gray-400 dark:text-gray-500">
-									Changes user profile image to match your <a
-										class=" text-gray-500 dark:text-gray-300 font-medium"
-										href="https://gravatar.com/"
-										target="_blank">Gravatar.</a
-									>
-								</div>
-							</div> -->
 						</div>
 
 						<div class="flex justify-end pt-3 text-sm font-medium">

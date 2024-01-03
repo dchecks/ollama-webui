@@ -3,7 +3,6 @@ from peewee import *
 from playhouse.shortcuts import model_to_dict
 from typing import List, Union, Optional
 import time
-from utils.misc import get_gravatar_url
 
 from apps.web.internal.db import DB
 from apps.web.models.chats import Chats
@@ -19,7 +18,7 @@ class User(Model):
     name = CharField()
     email = CharField()
     role = CharField()
-    profile_image_url = CharField()
+    profile_image_url = "/user.png"
     timestamp = DateField()
 
     class Meta:
@@ -59,7 +58,7 @@ class UsersTable:
                 "name": name,
                 "email": email,
                 "role": role,
-                "profile_image_url": get_gravatar_url(email),
+                "profile_image_url": "/user.png",
                 "timestamp": int(time.time()),
             }
         )

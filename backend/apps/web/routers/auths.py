@@ -21,7 +21,7 @@ from apps.web.models.users import Users
 
 
 from utils.utils import get_password_hash, get_current_user, create_token
-from utils.misc import get_gravatar_url, validate_email_format
+from utils.misc import validate_email_format
 from constants import ERROR_MESSAGES
 
 
@@ -39,7 +39,7 @@ async def get_session_user(user=Depends(get_current_user)):
         "email": user.email,
         "name": user.name,
         "role": user.role,
-        "profile_image_url": user.profile_image_url,
+        "profile_image_url": "/user.png",
     }
 
 
@@ -82,7 +82,7 @@ async def signin(form_data: SigninForm):
             "email": user.email,
             "name": user.name,
             "role": user.role,
-            "profile_image_url": user.profile_image_url,
+            "profile_image_url": "/user.png",
         }
     else:
         raise HTTPException(400, detail=ERROR_MESSAGES.INVALID_CRED)
@@ -116,7 +116,7 @@ async def signup(request: Request, form_data: SignupForm):
                             "email": user.email,
                             "name": user.name,
                             "role": user.role,
-                            "profile_image_url": user.profile_image_url,
+                            "profile_image_url": "/user.png",
                         }
                     else:
                         raise HTTPException(
